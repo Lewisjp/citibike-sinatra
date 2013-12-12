@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'bundler'
+require 'json'
 require "sinatra/reloader"
 
 Bundler.require
@@ -21,6 +22,20 @@ module Citibike
 
     get '/' do
       erb :home
+    end
+
+    get '/form' do
+      erb :form
+    end
+
+    post '/form' do
+      "You chose #{params["start"]} and #{params["end"]}"
+    end
+
+    post '/map' do
+      @start_station = params["start"]
+      @end_station = params["end"]
+      erb :map
     end
 
   end
